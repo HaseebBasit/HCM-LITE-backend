@@ -1,0 +1,23 @@
+{
+  "name": "hcm-lite-backend",
+  "version": "1.0.0",
+  "description": "HCM Lite Backend API",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch-path=src src/server.js"
+  },
+  "dependencies": {
+    "@volter/twin-mongodb": "^0.1.37",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb-memory-server": "^11.3.0",
+    "mongoose": "^8.9.5",
+    "multer": "^1.4.5-lts.1"
+  }
+}

@@ -1,0 +1,6 @@
+.env
+node_modules/
+.volter/
+coverage/
+dist/
+npm-debug.log*
