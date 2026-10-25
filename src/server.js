@@ -8,10 +8,35 @@ import dns from 'node:dns';
 
 const app = express();
 dns.setServers(['8.8.8.8', '8.8.4.4']);
-// Configure CORS as specified
+const normalizeOrigin = (value) => {
+  try {
+    return new URL(value.trim()).origin;
+  } catch {
+    return null;
+  }
+};
+const allowedOrigins = new Set(
+  [
+    ...ENV.FRONTEND_URL.split(','),
+    ...ENV.CORS_ORIGINS.split(','),
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+    'https://hcm-lite-frontend-eight.vercel.app',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+  ]
+    .map(normalizeOrigin)
+    .filter(Boolean)
+);
+
 app.use(
   cors({
-    origin: ENV.FRONTEND_URL,
+    origin(origin, callback) {
+      // Requests without an Origin header are non-browser clients (for example curl).
+      if (!origin || allowedOrigins.has(normalizeOrigin(origin))) {
+        return callback(null, true);
+      }
+      return callback(new Error('CORS origin is not allowed.'));
+    },
     credentials: true,
   })
 );

@@ -12,6 +12,7 @@ export const ENV = {
   NODE_ENV: nodeEnv,
   FRONTEND_URL: process.env.FRONTEND_URL || process.env.CLIENT_URL || 'http://localhost:3000',
   CLIENT_URL: process.env.FRONTEND_URL || process.env.CLIENT_URL || 'http://localhost:3000',
+  CORS_ORIGINS: process.env.CORS_ORIGINS || '',
   MONGODB_URI: process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/hcm_lite',
   JWT_SECRET: jwtSecret,
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
